@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang-"ja">
+    <head>
+        <title>三目並べ</title>
+        <link rel="stylesheet" href="sample01.css">
+        <style>
+            .cell{width:100px; height:100px; font-size:50pt;}
+        </style>
+    </head>
+    <body>
+        <h1>三目並べ</h1>
+        <table border="6">
+        <tr>
+            <td class="cell" id="a1" onclick="clickA(this);"> </td>
+            <td class="cell" id="a2" onclick="clickA(this);"> </td>
+            <td class="cell" id="a3" onclick="clickA(this);"> </td>
+        </tr>
+        <tr>
+            <td class="cell" id="a4" onclick="clickA(this);" ></td>
+            <td class="cell" id="a5" onclick="clickA(this);"> </td>
+            <td class="cell" id="a6" onclick="clickA(this);"> </td>
+        </tr>
+        <tr>
+            <td class="cell" id="a7" onclick="clickA(this);"> </td>
+            <td class="cell" id="a8" onclick="clickA(this);"> </td>
+            <td class="cell" id="a9" onclick="clickA(this);"> </td>
+        </tr>
+        </table>
+        <input type="reset" onclick="location.reload();">
+    </body>
+    <script>
+        var count=0;
+        function clickA(z){
+            if(z.innerText != ""){
+                alert("既に置かれているマスです");
+                return;
+            }
+            if(count++ %2 == 0){
+                z.innerText = "○";
+            }
+            else {z.innerText = "✘";
+            }
+
+            var ret = judge();
+            if(ret){alert(ret);}
+        }
+
+        function judge(){
+            var a1 = document.getElementById("a1").innerText;
+            var a2 = document.getElementById("a2").innerText;
+            var a3 = document.getElementById("a3").innerText;
+            var a4 = document.getElementById("a4").innerText;
+            var a5 = document.getElementById("a5").innerText;
+            var a6 = document.getElementById("a6").innerText;
+            var a7 = document.getElementById("a7").innerText;
+            var a8 = document.getElementById("a8").innerText;
+            var a9 = document.getElementById("a9").innerText;
+
+            if(a1 == a2 && a2 == a3 && a1 != "" ){
+                winner = a1;
+            }
+            else if (a4 == a5 && a5 == a6 && a4 != "" ){
+                winner = a4;
+            }
+            else if (a7 == a8 && a8 == a9 && a8 != "" ){
+                winner = a7;
+            }
+            else if (a1 == a4 && a4 == a7 && a1 != "" ){
+                winner = a1;
+            }
+            else if (a2 == a5 && a5 == a8 && a2 != "" ){
+                winner = a2;
+            }
+            else if (a3 == a6 && a6 == a9 && a3 != "" ){
+                winner = a3;
+            }
+            else if (a1 == a5 && a5 == a9 && a1 != "" ){
+                winner = a1;
+            }
+            else if (a3 == a5 && a5 == a7 && a3 != "" ){
+                winner = a3;
+            }
+            if (winner) {
+                var str = winner + "の勝ち";
+            }
+                return str ;;
+        }
+    </script>
+</html>
